@@ -8,7 +8,8 @@ public class Product {
     private String serial;
     private String name;
     private BigDecimal price;
-
+    private int inventoryQuantity;
+    
     public Product(String serial, String name, BigDecimal price) {
         this.serial = serial;
         this.name = name;
