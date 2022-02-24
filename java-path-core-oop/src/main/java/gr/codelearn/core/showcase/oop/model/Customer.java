@@ -5,6 +5,9 @@
 package gr.codelearn.core.showcase.oop.model;
 
 import java.util.Date;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 /**
  *
@@ -12,11 +15,9 @@ import java.util.Date;
  */
 @Setter
 @Getter
+@ToString
 public class Customer {
     private String customerName;
     private String customerSurname;
     private Date dateOfBirth;
-    
-    
-    
-}
+ }
