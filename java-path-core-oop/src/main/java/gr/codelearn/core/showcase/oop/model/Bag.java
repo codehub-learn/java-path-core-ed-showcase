@@ -17,6 +17,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Bag {
+    
+//    public static final String RETAIL_SALES = "retail sales";
+//    public static final String GROSS_SALES = "gross sales";
+//    public static final String RANDOM_SALES = "random sales";
+    
+    
     private ImmutableProduct product;
     private Customer customer;
+    private SalesType type;
 }

@@ -4,11 +4,11 @@ package gr.codelearn.core.showcase.oop.model;
 import java.math.BigDecimal;
 
 
-public class Product {
-    private String serial;
-    private String name;
-    private BigDecimal price;
-    private int inventoryQuantity;
+public abstract class Product {
+    protected String serial;
+    protected String name;
+    protected BigDecimal price;
+    protected int inventoryQuantity;
     
     public Product(String serial, String name, BigDecimal price) {
         this.serial = serial;
@@ -52,4 +52,6 @@ public class Product {
         return "Product{" + "serial=" + serial + ", name=" + name + ", price=" + price + '}';
     }
     
+    
+    public abstract BigDecimal calculateDiscount();
 }

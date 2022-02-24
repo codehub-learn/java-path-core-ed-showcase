@@ -12,4 +12,9 @@ public class Smartwatch extends Product{
     public String toString() {
         return "Smartwatch{" +super.toString()+ '}';
     } 
+
+    @Override
+    public BigDecimal calculateDiscount() {
+        return BigDecimal.ZERO;
+    }
 }

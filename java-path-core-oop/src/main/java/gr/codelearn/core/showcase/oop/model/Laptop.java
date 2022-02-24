@@ -28,4 +28,10 @@ public class Laptop extends Product{
         return "Laptop{"+super.toString() + ", cpuCoreCount=" + cpuCoreCount + '}';
     }
 
+    @Override
+    public BigDecimal calculateDiscount() {
+        BigDecimal discount = new BigDecimal("0.1");
+        return  price.multiply(discount);
+    }
+
 }

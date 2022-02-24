@@ -9,5 +9,5 @@ package gr.codelearn.core.showcase.oop.model;
  * @author iracl
  */
 public enum SalesType {
-    
+      RETAIL_SALES, GROSS_SALES, RANDOM_SALES  
 }
