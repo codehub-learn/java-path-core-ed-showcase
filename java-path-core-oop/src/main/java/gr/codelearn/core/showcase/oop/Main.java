@@ -13,21 +13,17 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+
 /*
 This is the main class
-*/
-
-public class Main {
-    
-    
-   
-/**
- * 
- * @param args 
  */
+public class Main {
+
+    /**
+     *
+     * @param args
+     */
     public static void main(String[] args) {
-        
-        
-       
+        System.out.println("This is a main message!");
     }
 }
