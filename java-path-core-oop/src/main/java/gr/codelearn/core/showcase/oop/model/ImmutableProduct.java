@@ -11,7 +11,7 @@ import java.util.Objects;
  *
  * @author iracl
  */
-public class ImmutableProduct extends Object{
+public class ImmutableProduct {
     private final String serial;
     private final String name;
     private final BigDecimal price;

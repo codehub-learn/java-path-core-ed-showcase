@@ -43,9 +43,7 @@ public abstract class Product {
         this.price = price;
     }
     
-    private void whatever(){
-        System.out.println("Whatever");
-    }
+   
 
     @Override
     public String toString() {

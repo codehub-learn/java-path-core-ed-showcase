@@ -5,7 +5,9 @@
 package gr.codelearn.core.showcase.oop.model;
 
 import java.util.Date;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -16,8 +18,14 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
+@AllArgsConstructor
+@NoArgsConstructor
 public class Customer {
+    private int id;
     private String customerName;
     private String customerSurname;
+    private String address;
     private Date dateOfBirth;
+    private boolean active = true;
+    private double balance;
  }
