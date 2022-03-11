@@ -8,11 +8,14 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.io.PrintStream;
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.DoubleSummaryStatistics;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.function.Consumer;
@@ -22,7 +25,10 @@ import java.util.function.Supplier;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
+import static java.util.stream.Collectors.partitioningBy;
+import static java.util.stream.Collectors.summarizingDouble;
 import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.toMap;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -31,7 +37,8 @@ public class Main {
     public static void main(String[] args) {
         //streamCreateActions();
         //streamBasicActions();
-        streamIntermediateActions();
+        //streamIntermediateActions();
+        streamFinalActions();
     }
 
     private static void streamCreateActions() {
@@ -129,19 +136,120 @@ public class Main {
         System.out.println("----------");
         Set<String> set = collectSetStream.collect(Collectors.toSet());
 
+        System.out.println("");
+
         // Collect to List
         Stream<String> collectListStream = Stream.of("John", "Costas", "Costas", "Nick", "John", "Costas");
         System.out.println("----------");
         List<String> list = collectListStream.collect(toList());
         list.forEach(System.out::println);
 
+        System.out.println("");
+
         // Collect to general collections
         Stream<String> collectGeneralCollectionsStream = Stream
                 .of("John", "Costas", "Costas", "Nick", "John", "Costas");
         System.out.println("Collect to general collections example");
         System.out.println("----------");
-        //collectGeneralCollectionsStream.collect(Collectors.toCollection(LinkedList::new)).forEach(System.out::println);    
+        collectGeneralCollectionsStream.collect(Collectors.toCollection(LinkedList::new)).forEach(System.out::println);
 
+        System.out.println("");
+
+        System.out.println("Collect to string array");
+        System.out.println("----------");
+        List<String> collectToArray = getNameList();
+        String[] toStringArray = collectToArray.stream().toArray(String[]::new);
+
+        System.out.println("");
+
+        System.out.println("Collect to map");
+        System.out.println("----------");
+        List<String> collectToMap = getNameList();
+//        Map<String, Character> collectedMap = 
+        collectToMap.stream().distinct()
+                .collect(Collectors.toMap(Function.identity(), name -> (int) name.chars().distinct().count()))
+                .forEach((k, v) -> System.out.println(k + ":" + v));
+
+        System.out.println("");
+
+        System.out.println("Collect grouping by");
+        System.out.println("----------");
+        List<String> groupingByExample = getNameList();
+        groupingByExample.stream().distinct().filter(name -> !name.endsWith("is")).sorted().collect(Collectors.groupingBy(name -> name.charAt(0))).forEach((k, v) -> System.out.println(k + ":" + v));
+
+        System.out.println("");
+        
+        System.out.println("Collect grouping by (ordered map)");
+        System.out.println("----------");
+        // The following block of code was asked within class, but was left 
+        // somewhat unanswered (how to sort a map)
+        // here is a link for it:
+        // https://www.baeldung.com/java-hashmap-sort
+        // and one of its implementations through streams:
+        Map<Character, List<String>> unorderedGroupingByMap = groupingByExample.stream().distinct().filter(name -> !name.endsWith("is")).sorted().collect(Collectors.groupingBy(name -> name.charAt(0)));
+
+        unorderedGroupingByMap.entrySet()
+                .stream()
+                .sorted(Map.Entry.<Character, List<String>>comparingByKey())
+                .forEach(System.out::println);
+
+        System.out.println("");
+
+        System.out.println("Reduce example");
+        System.out.println("----------");
+        List<Invoice> listOfInvoices = List.of(new Invoice(5, new BigDecimal("10"), "001"), new Invoice(2, new BigDecimal("20"), "002"), new Invoice(1, new BigDecimal("40"), "003"));
+//        int result = 0;
+//        for (Invoice invoice : listOfInvoices) {
+//            result += invoice.getPrice() * invoice.getQuantity();
+//        } 
+        // With big decimal 
+        BigDecimal result = listOfInvoices.stream().map(i -> i.getPrice().multiply(BigDecimal.valueOf(i.getQuantity()))).reduce(BigDecimal.ZERO, BigDecimal::add);
+        System.out.println(result);
+        // Without big decimal (with primitives)
+        Double result1 = listOfInvoices.stream().map(i -> i.getPrice().doubleValue() * i.getQuantity()).reduce(0.0, (r1, r2) -> r1 + r2);
+        System.out.println(result1);
+
+        System.out.println("");
+
+        // The following were not seen in class, but mentioned. Nevertheless, here
+        // are some implementations:
+        //  summarizing double
+        System.out.println("Summarizing double example");
+        System.out.println("----------");
+        List<String> collectSummarizingDouble = getNameList();
+        DoubleSummaryStatistics collectSummarizingDoubleResult
+                = collectSummarizingDouble.stream()
+                        .distinct()
+                        .collect(
+                                summarizingDouble(s -> s.length()));
+        System.out.println("Average: " + collectSummarizingDoubleResult.getAverage());
+        System.out.println("Sum: " + collectSummarizingDoubleResult.getSum());
+        System.out.println("Count: " + collectSummarizingDoubleResult.getCount());
+        System.out.println("Min: " + collectSummarizingDoubleResult.getMin());
+        System.out.println("Max: " + collectSummarizingDoubleResult.getMax());
+
+        System.out.println("");
+
+        //  joining
+        System.out.println("Joining");
+        System.out.println("----------");
+        List<String> joiningList = getNameList();
+        String joiningResult = joiningList.stream().distinct().sorted().collect(
+                Collectors.joining(" ", "Names: ", "."));
+        System.out.println(joiningResult);
+
+        System.out.println("");
+
+        // partioning by
+        System.out.println("Partitioning by");
+        System.out.println("----------");
+        List<String> collectPartitioningBy = getNameList();
+        Map<Boolean, List<String>> collectPartitioningByMap
+                = collectPartitioningBy.stream()
+                        .distinct()
+                        .sorted()
+                        .collect(partitioningBy(s -> s.length() > 5));
+        System.out.println(collectPartitioningByMap);
     }
 
     private static List<String> getNameList() {
@@ -153,7 +261,9 @@ public class Main {
                 "Menelaos",
                 "Menelaos",
                 "John",
-                "Nick");
+                "Nick",
+                "Janathan",
+                "Joana");
     }
 
     private static void basedOnPresentation() {
@@ -165,8 +275,7 @@ public class Main {
             "Alexandros",
             "Menelaos",
             "John",
-            "Nick"
-        };
+            "Nick",};
 
         Stream.of(namesArray);
 
