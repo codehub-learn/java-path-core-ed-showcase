@@ -25,6 +25,7 @@
     <modules>
         <module>java-path-core-oop</module>
         <module>java-path-core-datetime</module>
+        <module>java-path-core-thread</module>
     </modules>
 
     <!-- Properties/Variables -->
