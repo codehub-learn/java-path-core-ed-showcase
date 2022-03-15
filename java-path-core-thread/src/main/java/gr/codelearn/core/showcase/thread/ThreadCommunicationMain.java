@@ -67,8 +67,8 @@ class ThreadCommunication{
             } catch (InterruptedException ex) {
                 System.out.println("Thread interupted. Detailed message: " + ex.getMessage());
             }
-            amount.notify();
-//            amount.notifyAll();
+//            amount.notify();
+            amount.notifyAll();
         }
     }
 }
