@@ -23,6 +23,14 @@ public class Unit {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
+    private String name;
+    
+    private UnitType unitType;
+    
+    private int numberOfCredits;
+    
+    private String supervisor;
+    
     @ManyToOne
     private Department department;
 
