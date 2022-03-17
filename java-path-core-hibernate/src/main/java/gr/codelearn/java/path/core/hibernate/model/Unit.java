@@ -36,5 +36,80 @@ public class Unit {
 
     @OneToMany(mappedBy = "unit")
     private List<StudentUnit> studentUnits;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+    
+    
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public UnitType getUnitType() {
+        return unitType;
+    }
+
+    public void setUnitType(UnitType unitType) {
+        this.unitType = unitType;
+    }
+
+    public int getNumberOfCredits() {
+        return numberOfCredits;
+    }
+
+    public void setNumberOfCredits(int numberOfCredits) {
+        this.numberOfCredits = numberOfCredits;
+    }
+
+    public String getSupervisor() {
+        return supervisor;
+    }
+
+    public void setSupervisor(String supervisor) {
+        this.supervisor = supervisor;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
+
+    public List<StudentUnit> getStudentUnits() {
+        return studentUnits;
+    }
+
+    public void setStudentUnits(List<StudentUnit> studentUnits) {
+        this.studentUnits = studentUnits;
+    }
+
+    public Unit(String name, UnitType unitType, int numberOfCredits, String supervisor, Department department, List<StudentUnit> studentUnits) {
+        this.name = name;
+        this.unitType = unitType;
+        this.numberOfCredits = numberOfCredits;
+        this.supervisor = supervisor;
+        this.department = department;
+        this.studentUnits = studentUnits;
+    }
+
+    public Unit(String name, UnitType unitType, int numberOfCredits, String supervisor, Department department) {
+        this.name = name;
+        this.unitType = unitType;
+        this.numberOfCredits = numberOfCredits;
+        this.supervisor = supervisor;
+        this.department = department;
+    }
     
 }

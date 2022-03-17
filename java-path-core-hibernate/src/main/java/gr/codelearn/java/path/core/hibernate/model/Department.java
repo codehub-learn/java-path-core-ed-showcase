@@ -25,7 +25,7 @@ public class Department {
     
     private String name;
     
-    @Column(name = "myUniversityName", nullable = false)
+    @Column(name = "myUniversityName", nullable = false, length = 150)
     private String universityName;
     
     @OneToMany(mappedBy = "department")
@@ -41,4 +41,87 @@ public class Department {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getUniversityName() {
+        return universityName;
+    }
+
+    public void setUniversityName(String universityName) {
+        this.universityName = universityName;
+    }
+
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<Student> students) {
+        this.students = students;
+    }
+
+    public List<Unit> getUnits() {
+        return units;
+    }
+
+    public void setUnits(List<Unit> units) {
+        this.units = units;
+    }
+
+    private Department(Builder builder) {
+        id = builder.id;
+        name = builder.name;
+        universityName = builder.universityName;
+        students = builder.students;
+        units = builder.units;
+    }
+    
+    public static final class Builder {
+        private Long id;
+        private String name;
+        private String universityName;
+        private List<Student> students;
+        private List<Unit> units;
+
+        public Builder() {
+        }
+
+        public Builder setId(Long val) {
+            id = val;
+            return this;
+        }
+
+        public Builder setName(String val) {
+            name = val;
+            return this;
+        }
+
+        public Builder setUniversityName(String val) {
+            universityName = val;
+            return this;
+        }
+
+        public Builder setStudents(List<Student> val) {
+            students = val;
+            return this;
+        }
+
+        public Builder setUnits(List<Unit> val) {
+            units = val;
+            return this;
+        }
+
+        public Department build() {
+            return new Department(this);
+        }
+    }
+    
+    
+    
 }

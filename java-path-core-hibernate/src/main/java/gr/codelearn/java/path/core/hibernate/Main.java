@@ -20,8 +20,12 @@ public class Main {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("UniversityPU");
         EntityManager entityManager = emf.createEntityManager();
         //entityManager.find(Department.class, 1L);
-
-        Department department = new Department();
+        //Department department = new Department();
+        Department department = 
+                new Department.Builder()
+                    .setName("Computer Science")
+                    .setUniversityName("MIT")
+                .build();
         try {
             entityManager.getTransaction().begin();
             entityManager.persist(department);

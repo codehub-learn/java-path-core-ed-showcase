@@ -29,5 +29,43 @@ public class StudentUnit {
     
     @ManyToOne
     private Unit unit;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public LocalDate getDateRegistered() {
+        return dateRegistered;
+    }
+
+    public void setDateRegistered(LocalDate dateRegistered) {
+        this.dateRegistered = dateRegistered;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+
+    public Unit getUnit() {
+        return unit;
+    }
+
+    public void setUnit(Unit unit) {
+        this.unit = unit;
+    }
+
+    public StudentUnit(LocalDate dateRegistered, Student student, Unit unit) {
+        this.dateRegistered = dateRegistered;
+        this.student = student;
+        this.unit = unit;
+    }
     
 }

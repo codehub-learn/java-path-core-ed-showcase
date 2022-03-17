@@ -41,5 +41,86 @@ public class Student {
     
     @Transient
     private int totalCredits;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public LocalDate getDateRegistered() {
+        return dateRegistered;
+    }
+
+    public void setDateRegistered(LocalDate dateRegistered) {
+        this.dateRegistered = dateRegistered;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
+
+    public List<StudentUnit> getStudentUnits() {
+        return studentUnits;
+    }
+
+    public void setStudentUnits(List<StudentUnit> studentUnits) {
+        this.studentUnits = studentUnits;
+    }
+
+    public int getTotalCredits() {
+        return totalCredits;
+    }
+
+    public void setTotalCredits(int totalCredits) {
+        this.totalCredits = totalCredits;
+    }
+
+    public Student(String name, String address, String email, LocalDate dateRegistered, Department department, List<StudentUnit> studentUnits) {
+        this.name = name;
+        this.address = address;
+        this.email = email;
+        this.dateRegistered = dateRegistered;
+        this.department = department;
+        this.studentUnits = studentUnits;
+    }
+
+    public Student(String name, String address, String email, LocalDate dateRegistered, Department department) {
+        this.name = name;
+        this.address = address;
+        this.email = email;
+        this.dateRegistered = dateRegistered;
+        this.department = department;
+    }
     
 }
