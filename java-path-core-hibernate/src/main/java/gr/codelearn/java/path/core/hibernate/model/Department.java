@@ -5,8 +5,10 @@
 package gr.codelearn.java.path.core.hibernate.model;
 
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -28,10 +30,10 @@ public class Department {
     @Column(name = "myUniversityName", nullable = false, length = 150)
     private String universityName;
     
-    @OneToMany(mappedBy = "department")
+    @OneToMany(mappedBy = "department", cascade = {CascadeType.REMOVE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
     private List<Student> students;
     
-    @OneToMany(mappedBy = "department")
+    @OneToMany(mappedBy = "department", cascade = {CascadeType.REMOVE, CascadeType.PERSIST}, fetch = FetchType.LAZY)
     private List<Unit> units;
 
     public Long getId() {
@@ -81,6 +83,11 @@ public class Department {
         students = builder.students;
         units = builder.units;
     }
+
+    public Department() {
+    }
+    
+    
     
     public static final class Builder {
         private Long id;

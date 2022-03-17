@@ -6,6 +6,8 @@ package gr.codelearn.java.path.core.hibernate.model;
 
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,6 +27,7 @@ public class Unit {
     
     private String name;
     
+    @Enumerated(value = EnumType.ORDINAL)
     private UnitType unitType;
     
     private int numberOfCredits;
@@ -36,6 +39,11 @@ public class Unit {
 
     @OneToMany(mappedBy = "unit")
     private List<StudentUnit> studentUnits;
+
+    public Unit() {
+    }
+
+    
 
     public Long getId() {
         return id;

@@ -6,6 +6,7 @@ package gr.codelearn.java.path.core.hibernate.model;
 
 import java.time.LocalDate;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -41,6 +42,9 @@ public class Student {
     
     @Transient
     private int totalCredits;
+
+    public Student() {
+    }
 
     public Long getId() {
         return id;
@@ -122,5 +126,13 @@ public class Student {
         this.dateRegistered = dateRegistered;
         this.department = department;
     }
+    
+    
+
+    @Override
+    public String toString() {
+        return "Student{" + "id=" + id + ", name=" + name + ", address=" + address + ", email=" + email + ", dateRegistered=" + dateRegistered + ", department=" + department + ", studentUnits=" + studentUnits + ", totalCredits=" + totalCredits + '}';
+    }
+    
     
 }
