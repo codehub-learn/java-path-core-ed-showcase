@@ -11,8 +11,8 @@
             <PatternLayout pattern="${LOG_PATTERN}"/>
         </Console>
         <RollingRandomAccessFile name="RollingRandomAccessFileAppender"
-                                                 fileName="logs/java-path-core-log-example.log"
-                                                 filePattern="logs/java-path-core-log-example--%d{yyyy-MM-dd}.zip">
+                                 fileName="logs/java-path-core-log-example.log"
+                                 filePattern="logs/java-path-core-log-example--%d{yyyy-MM-dd}.zip">
             <PatternLayout>
                 <Pattern>${LOG_PATTERN}</Pattern>
             </PatternLayout>
@@ -29,7 +29,8 @@
     
     
     <Loggers>
-        <AsyncLogger name="gr.codelearn" level="debug">
+        <!--Set additivity to false to disable the inheritance of ancestors appenders--> 
+        <AsyncLogger name="gr.codelearn" level="debug" additivity="false">
             <AppenderRef ref="ConsoleAppender"/>
             <AppenderRef ref="RollingRandomAccessFileAppender"/>
         </AsyncLogger>
