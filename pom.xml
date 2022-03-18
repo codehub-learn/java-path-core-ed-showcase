@@ -29,6 +29,7 @@
         <module>java-path-core-database</module>
         <module>java-path-core-hibernate</module>
         <module>java-path-core-log</module>
+        <module>java-path-core-regex</module>
     </modules>
 
     <!-- Properties/Variables -->
