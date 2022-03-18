@@ -8,8 +8,6 @@ import gr.codelearn.java.path.core.hibernate.model.Department;
 import gr.codelearn.java.path.core.hibernate.model.Student;
 import gr.codelearn.java.path.core.hibernate.model.Unit;
 import gr.codelearn.java.path.core.hibernate.model.UnitType;
-import gr.codelearn.java.path.core.hibernate.repository.DepartmentRepository;
-import gr.codelearn.java.path.core.hibernate.repository.DepartmentRepositoryImpl;
 import java.time.LocalDate;
 import java.util.List;
 import javax.persistence.EntityManager;
