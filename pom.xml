@@ -30,6 +30,7 @@
         <module>java-path-core-hibernate</module>
         <module>java-path-core-log</module>
         <module>java-path-core-regex</module>
+        <module>java-path-core-testing</module>
     </modules>
 
     <!-- Properties/Variables -->
