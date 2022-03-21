@@ -18,10 +18,16 @@ public class CartServiceImpl implements CartService {
 
     private CartRepository cartRepository;
     private BigDecimal balance;
+    private final PaymentService paymentService;
 
-    public CartServiceImpl(CartRepository cartRepository, BigDecimal balance) {
+//    public CartServiceImpl(CartRepository cartRepository, BigDecimal balance) {
+//        this.cartRepository = cartRepository;
+//        this.balance = balance;
+//    }
+    
+    public CartServiceImpl(CartRepository cartRepository, PaymentService paymentService) {
         this.cartRepository = cartRepository;
-        this.balance = balance;
+        this.paymentService = paymentService;
     }
 
     @Override
@@ -56,7 +62,8 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public boolean checkout() {
-        if (getTotalPrice().compareTo(balance) <= 0) {
+        if (getTotalPrice().compareTo(paymentService.balance()) <= 0) {
+            paymentService.withdraw(getTotalPrice());
             cartRepository.setItems(new ArrayList<>());
             return true;
         }
